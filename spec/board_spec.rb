@@ -3,8 +3,8 @@ require 'board'
 describe Board do
 	let(:board) {Board.new}
 	let(:empty) {' '}
-	let(:x) {'x'}
-	let(:o) {'o'}
+	let(:player_x) {'x'}
+	let(:player_o) {'o'}
 
 	context "initializing board" do
 		it "has a default size of 9" do
@@ -32,16 +32,35 @@ describe Board do
 		end
 
 		it "can fill a specific space" do
-			board.fill(0,x)
-			expect(board.spaces).to eql [x, empty, empty,
+			board.fill(0,player_x)
+			expect(board.spaces).to eql [player_x, empty, empty,
 						empty, empty, empty,
 						empty, empty, empty]
 		end
 
 		it "should raise an error if space is occupied" do
-			board.fill(0, x)
-			expect { board.fill(0,x) }.to raise_error
+			board.fill(0,player_x)
+			expect { board.fill(0,player_x) }.to raise_error
 		end
 	end
 
+	it "should get the indices of available moves" do
+		board.fill(0,player_x)
+		board.fill(1,player_o)
+		board.fill(2,player_x)
+
+		expect(board.get_available_moves).to eql [3,4,5,6,7,8]
+
+		board.fill(8,player_o)
+		board.fill(7,player_x)
+
+		expect(board.get_available_moves).to eql [3,4,5,6]
+	end
+
+	it "should clear one space" do
+		board.fill(0, player_x)
+		board.clear_space 0
+
+		expect(board.spaces[0]).to eql empty
+	end
 end

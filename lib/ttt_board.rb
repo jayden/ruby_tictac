@@ -2,13 +2,13 @@ require 'board'
 
 class TTTBoard < Board
 	WINNING_PATTERNS = [0x1c0, 0x38, 0x7, 0x124, 0x92, 0x49, 0x111, 0x54]
-	X = 'x'
-	O = 'o'
+	PLAYER_X = 'x'
+	PLAYER_O = 'o'
 	attr_accessor :winner
 
-	# TODO: Change method so that it doesn't need marker argument
-	def hasWinner?
-		[X,O].each do |marker|
+	# TODO: refactor and simplify code
+	def winner?
+		[PLAYER_X,PLAYER_O].each do |marker|
 			pattern = 0x0
 			spaces.each_with_index do |mark, index|
 				pattern |= ( 1 << index ) if mark == marker
@@ -23,10 +23,10 @@ class TTTBoard < Board
 		false
 	end
 
-	def isDraw?
-		return false if spaces.include? EMPTY or hasWinner? 
+	def draw?
+		return false if spaces.include? EMPTY or winner? 
 			true
 	end
 
-
+	
 end

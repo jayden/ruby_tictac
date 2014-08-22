@@ -1,15 +1,15 @@
 class Board
 	EMPTY = ' '
-	attr_accessor :spaces, :size
+	attr_reader :spaces, :size
 
 	def initialize(size=9)
 		@spaces = []
 		@size = size
-		raise Exception unless valid_size?
+		raise Exception unless valid?
 		clear
 	end
 
-	def valid_size?
+	def valid?
 		sqrt = Math::sqrt(@size)
 		return true if (sqrt * sqrt == size)
 		false
@@ -22,5 +22,17 @@ class Board
 	def fill position, marker
 		raise Exception if spaces[position] != EMPTY
 		spaces[position] = marker
+	end
+
+	def get_available_moves
+		available_moves = []
+		spaces.each_with_index do |move, index|
+			available_moves.push(index) if move == EMPTY
+		end
+		available_moves
+	end
+
+	def clear_space move
+		spaces[move] = EMPTY
 	end
 end
