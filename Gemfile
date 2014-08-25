@@ -1,5 +1,14 @@
-# A sample Gemfile
 source "https://rubygems.org"
+ 
+gem 'rspec'
+ 
+group :development do
+  gem 'guard'
+  gem 'guard-rspec'
+  gem 'pry'
 
-# gem "rails"
-gem "rspec"
+  # Adds debugging steps to Pry
+  # continue, step, next
+  gem 'pry-remote'
+  gem 'pry-nav'
+end
