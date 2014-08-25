@@ -6,12 +6,11 @@ MIN_VALUE = -100000
 MAX_VALUE = 100000
 
 class PerfectPlayer < Player
-def move
+	def move
 		best_score_and_move = minimax(INITIAL_DEPTH, @marker)
 		@board.fill(best_score_and_move[1], @marker)
 	end
 
-	# TODO: Refactor
 	def minimax(depth, player)
 		available_moves = @board.get_available_moves
 
