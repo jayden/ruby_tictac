@@ -4,7 +4,7 @@ class TTTBoard < Board
 	WINNING_PATTERNS = [0x1c0, 0x38, 0x7, 0x124, 0x92, 0x49, 0x111, 0x54]
 	PLAYER_X = 'x'
 	PLAYER_O = 'o'
-	attr_accessor :winner
+	attr_reader :winner
 
 	# TODO: refactor and simplify code
 	def winner?
@@ -28,5 +28,16 @@ class TTTBoard < Board
 			true
 	end
 
-	
+	def get_available_moves
+		available_moves = []
+
+		if winner?
+			return available_moves
+		end
+		
+		spaces.each_with_index do |move, index|
+			available_moves.push(index) if move == EMPTY
+		end
+		available_moves
+	end
 end

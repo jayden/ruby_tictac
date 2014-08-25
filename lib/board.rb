@@ -24,14 +24,6 @@ class Board
 		spaces[position] = marker
 	end
 
-	def get_available_moves
-		available_moves = []
-		spaces.each_with_index do |move, index|
-			available_moves.push(index) if move == EMPTY
-		end
-		available_moves
-	end
-
 	def clear_space move
 		spaces[move] = EMPTY
 	end

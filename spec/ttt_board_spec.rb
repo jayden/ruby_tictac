@@ -122,4 +122,12 @@ describe TTTBoard do
 			expect(board.draw?).to eql false
 		end
 	end
+
+	it "returns available moves" do
+		board.fill(0, player_x)
+		board.fill(1, player_o)
+		board.fill(2, player_x)
+
+		expect(board.get_available_moves).to eql [3,4,5,6,7,8]
+	end
 end

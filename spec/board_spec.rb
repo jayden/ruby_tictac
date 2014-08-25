@@ -44,19 +44,6 @@ describe Board do
 		end
 	end
 
-	it "should get the indices of available moves" do
-		board.fill(0,player_x)
-		board.fill(1,player_o)
-		board.fill(2,player_x)
-
-		expect(board.get_available_moves).to eql [3,4,5,6,7,8]
-
-		board.fill(8,player_o)
-		board.fill(7,player_x)
-
-		expect(board.get_available_moves).to eql [3,4,5,6]
-	end
-
 	it "should clear one space" do
 		board.fill(0, player_x)
 		board.clear_space 0
