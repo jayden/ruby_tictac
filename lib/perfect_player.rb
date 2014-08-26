@@ -11,7 +11,6 @@ class PerfectPlayer < Player
 		@board.fill(best_score_and_move[1], @marker)
 	end
 
-	# TODO: Refactor
 	def minimax(depth, player)
 		available_moves = @board.get_available_moves
 		best_score = player == @marker ? MIN_VALUE : MAX_VALUE
