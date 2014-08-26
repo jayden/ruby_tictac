@@ -1,4 +1,7 @@
 class Board
+	class InvalidMove < StandardError
+	end
+
 	EMPTY = ' '
 	attr_reader :spaces, :size
 
@@ -20,7 +23,7 @@ class Board
 	end
 
 	def fill position, marker
-		raise Exception if spaces[position] != EMPTY
+		raise InvalidMove, "Invalid move!" if spaces[position] != EMPTY
 		spaces[position] = marker
 	end
 

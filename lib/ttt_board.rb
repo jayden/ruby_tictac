@@ -1,6 +1,7 @@
 require 'board'
 
 class TTTBoard < Board
+	# TODO: Generate winning patterns. Do not hardcode
 	WINNING_PATTERNS = [0x1c0, 0x38, 0x7, 0x124, 0x92, 0x49, 0x111, 0x54]
 	PLAYER_X = 'x'
 	PLAYER_O = 'o'
@@ -24,8 +25,8 @@ class TTTBoard < Board
 	end
 
 	def draw?
-		return false if spaces.include? EMPTY or winner? 
-			true
+		return true unless spaces.include? EMPTY or winner? 
+			false
 	end
 
 	def get_available_moves

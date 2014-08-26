@@ -24,29 +24,42 @@ describe PerfectPlayer do
 	end
 
 	context "when deciding on a move" do
-		it "should choose center if player chooses top-left edge" do
+		it "should choose center if player chooses an edge" do
 			@board.fill(0, player_x)
 			@perfect_player.move
 			expect(@board.spaces[4]).to eql player_o
 		end
 
-		it "should choose center if player chooses top-right edge" do
-			@board.fill(2, player_x)
+		it "should block a winning move" do
+			@board.fill(0, player_x)
+			@board.fill(4, player_o)
+			@board.fill(1, player_x)
 			@perfect_player.move
-			expect(@board.spaces[4]).to eql player_o
+
+			expect(@board.spaces[2]).to eql player_o
 		end
 
-		it "should choose center if player chooses bottom-left edge" do
+		it "should choose a winning move" do
+			@board.fill(0, player_x)
+			@board.fill(1, player_o)
+			@board.fill(8, player_x)
+			@board.fill(7, player_o)
 			@board.fill(6, player_x)
 			@perfect_player.move
-			expect(@board.spaces[4]).to eql player_o
+			@board.winner?
+			expect(@board.winner).to eql player_o
 		end
 
-		it "should choose center if player chooses bottom-right edge" do
-			@board.fill(8, player_x)
+		it "should choose to win over blocking a winning move" do
+			@board.fill(0, player_x)
+			@board.fill(4, player_o)
+			@board.fill(2, player_x)
+			@board.fill(1, player_o)
+			@board.fill(6, player_x)
 			@perfect_player.move
-			expect(@board.spaces[4]).to eql player_o
-		end
+
+			expect(@board.spaces[7]).to eql player_o
+		end	
 	end
 
 end	

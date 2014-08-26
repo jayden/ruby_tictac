@@ -10,6 +10,10 @@ describe TTTBoard do
 		it "acts like a normal board" do
 			expect(board).to be_kind_of Board
 		end
+
+		it "can also present a board" do
+			expect(board).to respond_to :present
+		end
 	end
 
 	context "when there's a winner" do

@@ -20,9 +20,7 @@ describe Board do
 		end
 
 		it "should be empty" do
-			expect(board.spaces).to eql [empty, empty, empty,
-																	empty, empty, empty,
-																	empty, empty, empty]
+			expect(board.spaces.uniq).to eql [empty]
 		end
 	end
 
@@ -33,9 +31,7 @@ describe Board do
 
 		it "can fill a specific space" do
 			board.fill(0,player_x)
-			expect(board.spaces).to eql [player_x, empty, empty,
-						empty, empty, empty,
-						empty, empty, empty]
+			expect(board.spaces[0]).to eql player_x
 		end
 
 		it "should raise an error if space is occupied" do

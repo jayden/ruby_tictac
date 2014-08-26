@@ -2,8 +2,8 @@ require 'player'
 
 INITIAL_DEPTH = 0
 INITIAL_BEST_MOVE = 9
-MIN_VALUE = -100000
-MAX_VALUE = 100000
+MIN_VALUE = -100
+MAX_VALUE = 100
 
 class PerfectPlayer < Player
 	def move
@@ -14,11 +14,10 @@ class PerfectPlayer < Player
 	# TODO: Refactor
 	def minimax(depth, player)
 		available_moves = @board.get_available_moves
-
-		best_score  = (player == @marker) ? MIN_VALUE : MAX_VALUE
+		best_score = player == @marker ? MIN_VALUE : MAX_VALUE
 		best_move = INITIAL_BEST_MOVE
 		current_score = 0
-
+		
 		if available_moves.length == 0
 			best_score = evaluate_score(depth)
 		else
