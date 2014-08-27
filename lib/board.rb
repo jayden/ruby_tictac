@@ -23,7 +23,7 @@ class Board
 	end
 
 	def fill position, marker
-		raise InvalidMove, "Invalid move!" if spaces[position] != EMPTY
+		raise InvalidMove, "invalid move!" if spaces[position] != EMPTY
 		spaces[position] = marker
 	end
 
