@@ -17,12 +17,6 @@ describe PerfectPlayer do
 		expect(@perfect_player.enemy).to eql player_x
 	end
 
-	it "should be able to undo a move" do
-		@board.fill(0, player_x)
-		@perfect_player.undo 0
-		expect(@board.spaces[0]).to eql Board::EMPTY
-	end
-
 	context "when deciding on a move" do
 		it "should choose center if player chooses an edge" do
 			@board.fill(0, player_x)
@@ -60,6 +54,12 @@ describe PerfectPlayer do
 
 			expect(@board.spaces[7]).to eql player_o
 		end	
+	end
+
+	it "should be able to undo a move" do
+		@board.fill(0, player_x)
+		@perfect_player.undo 0
+		expect(@board.spaces[0]).to eql Board::EMPTY
 	end
 
 end	

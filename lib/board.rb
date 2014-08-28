@@ -30,4 +30,16 @@ class Board
 	def clear_space move
 		spaces[move] = EMPTY
 	end
+
+	def width
+		Math::sqrt(size)
+	end
+
+	def last_space
+		size-1
+	end
+
+	def last_space_in_row
+		width-1
+	end
 end
