@@ -4,45 +4,9 @@ describe TTTBoard do
 	let(:board) {TTTBoard.new}
 	let(:player_o) {'o'}
 	let(:player_x) {'x'}
-	let(:empty){' '}
-	
-	let(:winning_patterns) {[0x1c0, 0x38, 0x7, 0x124, 0x92, 0x49, 0x111, 0x54]}
-	let(:winning_3x3_rows) {[0x7, 0x38, 0x1c0]}
-	let(:winning_4x4_rows) {[0x000f, 0x00f0, 0x0f00, 0xf000]}
-	let(:winning_3x3_cols) {[0x49, 0x92, 0x124]}
-	let(:winning_4x4_cols) {[0x1111, 0x2222, 0x4444, 0x8888]}
-	let(:winning_3x3_diags) {[0x111, 0x54]}
-	let(:winning_4x4_diags) {[0x8421, 0x1248]}
 
 	it "acts like a normal board" do
 		expect(board).to be_kind_of Board
-	end
-
-	it "generates winning row patterns" do
-		expect(board.winning_rows).to eql winning_3x3_rows
-	end
-
-	it "can also generate winning row patterns for 4x4" do
-		board4 = TTTBoard.new(16)
-		expect(board4.winning_rows).to eql winning_4x4_rows
-	end
-
-	it "generates winning column patterns" do
-		expect(board.winning_cols).to eql winning_3x3_cols
-	end
-
-	it "can also generate winning row patterns for 4x4" do
-		board4 = TTTBoard.new(16)
-		expect(board4.winning_cols).to eql winning_4x4_cols
-	end
-
-	it "generates winning diagonal patterns" do
-		expect(board.winning_diags).to eql winning_3x3_diags
-	end
-
-	it "can also generate winning diagonal patterns for 4x4" do
-		board4 = TTTBoard.new(16)
-		expect(board4.winning_diags).to eql winning_4x4_diags
 	end
 
 	context "when there's a winner" do
