@@ -3,7 +3,7 @@ require 'board'
 class TTTBoard < Board
 	PLAYER_X = 'x'
 	PLAYER_O = 'o'
-	attr_reader :winner, :winning_combos
+	attr_reader :winner
 
 	def draw?
 		return true unless spaces.include? EMPTY or winner? 
@@ -41,7 +41,6 @@ class TTTBoard < Board
 
 	def winning_combos
 		winning_rows.concat(winning_cols).concat(winning_diags)
-		#[winning_rows, winning_cols, winning_diags].reduce(:+)
 	end
 
 	def winning_rows(winning_rows=[])
