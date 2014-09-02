@@ -13,15 +13,16 @@ class Game
 			begin
 				@user_interface.show_board
 				player_turn
-			rescue Board::InvalidMove => ex
-				@user_interface.show_message(ex.message << "\n")
+			rescue TTTBoard::InvalidMove => ex
+				@user_interface.show_message_with_newline(ex.message)
 			end
 		end
 		print_conclusion
 	end
 
 	def player_turn
-		filled_spaces = @board.spaces.select{|space| space != Board::EMPTY}.size
+		filled_spaces = @board.spaces
+		filled_spaces = filled_spaces.select{|space| space != Board::EMPTY}.size
 		if filled_spaces.even?
 			get_user_move
 		else

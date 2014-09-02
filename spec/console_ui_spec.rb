@@ -26,13 +26,18 @@ describe ConsoleUI do
 		expect(@output.string).to eql "hello human!"
 	end
 
+	it "shows output messages with newline" do
+		@console_ui.show_message_with_newline("hello human!")
+		expect(@output.string).to eql "hello human!\n"
+	end
+
 	it "asks for player move" do
 		@console_ui.ask_for_move
 		expect(@output.string).to eql "select a move: "
 	end
 
 	it "shows the board" do
-		expect(@console_ui).to receive(:show_message).with(BoardPresenter.display(@board))	
+		expect(@console_ui).to receive(:show_message).with(TTTBoardPresenter.display(@board))	
 		@console_ui.show_board
 	end
 

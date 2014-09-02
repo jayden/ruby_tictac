@@ -1,9 +1,17 @@
 require 'board'
 
 class TTTBoard < Board
+	class InvalidMove < StandardError
+	end
+	
 	PLAYER_X = 'x'
 	PLAYER_O = 'o'
 	attr_reader :winner
+
+	def fill(position, marker)
+		raise InvalidMove, "invalid move!" if spaces[position] != EMPTY
+		spaces[position] = marker
+	end
 
 	def draw?
 		return true unless spaces.include? EMPTY or winner? 
@@ -63,4 +71,17 @@ class TTTBoard < Board
 	def get_diags(array)
 		(0..last_space_in_row).collect{|i| array[i][i]}
 	end
+
+	def width
+		Math::sqrt(size)
+	end
+
+	def last_space
+		size-1
+	end
+
+	def last_space_in_row
+		width-1
+	end
+
 end

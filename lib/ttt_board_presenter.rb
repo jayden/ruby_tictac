@@ -1,4 +1,4 @@
-module BoardPresenter
+module TTTBoardPresenter
 	def self.display(board)
 		board_layout = ""
 

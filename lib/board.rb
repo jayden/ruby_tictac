@@ -1,5 +1,5 @@
 class Board
-	class InvalidMove < StandardError
+	class InvalidSize < StandardError
 	end
 
 	EMPTY = ' '
@@ -8,7 +8,7 @@ class Board
 	def initialize(size=9)
 		@spaces = []
 		@size = size
-		raise Exception unless valid?
+		raise InvalidSize, "invalid size!" unless valid?
 		clear
 	end
 
@@ -23,23 +23,10 @@ class Board
 	end
 
 	def fill position, marker
-		raise InvalidMove, "invalid move!" if spaces[position] != EMPTY
 		spaces[position] = marker
 	end
 
 	def clear_space move
 		spaces[move] = EMPTY
-	end
-
-	def width
-		Math::sqrt(size)
-	end
-
-	def last_space
-		size-1
-	end
-
-	def last_space_in_row
-		width-1
 	end
 end

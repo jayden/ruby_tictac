@@ -12,7 +12,25 @@ describe 'Game' do
 		@human_player = HumanPlayer.new(@ttt_board, player_x)
 		@perfect_player = PerfectPlayer.new(@ttt_board, player_o)
 		@user_interface = double
+		@test_board = double
 		@game = Game.new(@ttt_board, @human_player, @perfect_player, @user_interface)
+	end
+
+	it "ends the game and declares a winner" do
+		allow(@test_board).to receive(:winner?).and_return([false, false, false, false, true])
+		expect(@test_board).to receive(:draw?).twice
+		expect(@user_interface).to receive(:show_board).once
+		expect(@user_interface).to receive(:declare_winner).once
+		test_game = Game.new(@test_board, @human_player, @perfect_player, @user_interface)
+		test_game.play
+	end
+
+	it "ends the game and declares a draw" do
+		allow(@test_board).to receive(:draw?).and_return([false,true])
+		expect(@user_interface).to receive(:show_board).once
+		expect(@user_interface).to receive(:declare_draw).once
+		test_game = Game.new(@test_board, @human_player, @perfect_player, @user_interface)
+		test_game.play
 	end
 
 	it "lets human take its turn" do

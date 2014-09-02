@@ -12,7 +12,7 @@ describe Board do
 		end
 
 		it "will raise an error if provided invalid size" do
-			expect {Board.new(7)}.to raise_error
+			expect {Board.new(7)}.to raise_error Board::InvalidSize
 		end
 
 		it "has a list of spaces" do
@@ -32,11 +32,6 @@ describe Board do
 		it "can fill a specific space" do
 			board.fill(0,player_x)
 			expect(board.spaces[0]).to eql player_x
-		end
-
-		it "should raise an error if space is occupied" do
-			board.fill(0,player_x)
-			expect { board.fill(0,player_x) }.to raise_error
 		end
 	end
 

@@ -9,6 +9,11 @@ describe TTTBoard do
 		expect(board).to be_kind_of Board
 	end
 
+	it "should raise an error if space is occupied" do
+		board.fill(0,player_x)
+		expect { board.fill(0,player_x) }.to raise_error TTTBoard::InvalidMove
+	end
+
 	context "when there's a winner" do
 		it "finds winner in top row" do
 			board.fill(0,player_x)

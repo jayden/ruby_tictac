@@ -1,4 +1,4 @@
-require 'board_presenter'
+require 'ttt_board_presenter'
 
 class ConsoleUI
 	attr_reader :input, :output, :board
@@ -17,13 +17,17 @@ class ConsoleUI
 		@output.print message
 	end
 
+	def show_message_with_newline(message)
+		@output.puts message
+	end
+
 	def ask_for_move
 		show_message("select a move: ")
 		get_input
 	end
 
 	def show_board
-		show_message(BoardPresenter.display(@board))
+		show_message(TTTBoardPresenter.display(@board))
 	end
 
 	def declare_draw
