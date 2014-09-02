@@ -1,44 +1,42 @@
 require 'player'
 
 INITIAL_DEPTH = 0
-INITIAL_BEST_MOVE = 9
-MIN_VALUE = -100
-MAX_VALUE = 100
 
 class PerfectPlayer < Player
 	def move
-		best_score_and_move = minimax(INITIAL_DEPTH, @marker)
-		@board.fill(best_score_and_move[1], @marker)
+		minimax(INITIAL_DEPTH, @marker)
+		board.fill(@best_move, @marker)
 	end
 
 	def minimax(depth, player)
 		available_moves = @board.get_available_moves
-		best_score = player == @marker ? MIN_VALUE : MAX_VALUE
-		best_move = INITIAL_BEST_MOVE
-		current_score = 0
-		
-		if available_moves.length == 0
-			best_score = evaluate_score(depth)
-		else
-			available_moves.each do |move|
-			@board.fill(move, player)
-			if player == @marker
-				current_score = minimax(depth+1, @enemy)[0]
-				if current_score > best_score
-						best_score = current_score
-						best_move = move
-				end
-			else
-				current_score = minimax(depth+1, @marker)[0]
-				if current_score < best_score
-					best_score = current_score
-					best_move = move
-				end
-			end
-			undo(move)
-			end
+		depth += 1
+		scores = []
+		moves = []
+
+		return evaluate_score(depth) if available_moves.length == 0
+
+		available_moves.each do |move|
+			@board.fill(move,player)
+			next_turn = player == @marker ? @enemy : @marker
+			scores << minimax(depth, next_turn)
+			moves << move
+			@board.clear_space(move)
 		end
-		return [best_score, best_move]
+
+		best_score(player, scores, moves)
+	end
+
+	def best_score(player, scores, moves)
+		if player == @marker
+			max_score = scores.each_with_index.max[1]
+			@best_move = moves[max_score]
+			return scores[max_score]
+		else
+			min_score = scores.each_with_index.min[1]
+			@best_move = moves[min_score]
+			return scores[min_score]
+		end
 	end
 
 	def evaluate_score depth
@@ -48,10 +46,6 @@ class PerfectPlayer < Player
 		else
 			return 0
 		end
-	end
-
-	def undo move
-		@board.clear_space move
 	end
 
 end

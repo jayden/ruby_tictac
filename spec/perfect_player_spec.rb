@@ -58,7 +58,7 @@ describe PerfectPlayer do
 
 	it "should be able to undo a move" do
 		@board.fill(0, player_x)
-		@perfect_player.undo 0
+		@board.clear_space(0)
 		expect(@board.spaces[0]).to eql Board::EMPTY
 	end
 
