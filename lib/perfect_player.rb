@@ -21,31 +21,30 @@ class PerfectPlayer < Player
 			best_score = evaluate_score(depth)
 		else
 			available_moves.each do |move|
-				@board.fill(move, player)
-				if player == @marker
-					current_score = minimax(depth+1, @enemy)[0]
-					if current_score > best_score
+			@board.fill(move, player)
+			if player == @marker
+				current_score = minimax(depth+1, @enemy)[0]
+				if current_score > best_score
 						best_score = current_score
 						best_move = move
-					end
-				else
-					current_score = minimax(depth+1, @marker)[0]
-					if current_score < best_score
-						best_score = current_score
-						best_move = move
-					end
 				end
-				undo(move)
+			else
+				current_score = minimax(depth+1, @marker)[0]
+				if current_score < best_score
+					best_score = current_score
+					best_move = move
+				end
+			end
+			undo(move)
 			end
 		end
 		return [best_score, best_move]
 	end
 
 	def evaluate_score depth
-		base_score = 10
+		base_score = @board.size+1
 		if @board.winner?
-			return base_score - depth if @board.winner == @marker
-			return depth - base_score if @board.winner == @enemy
+			return @board.winner == @marker ? (base_score-depth) : (depth-base_score)
 		else
 			return 0
 		end

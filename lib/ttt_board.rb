@@ -21,7 +21,7 @@ class TTTBoard < Board
 	end
 
 	def winner?
-		check_for_nil(@winning_combos, Proc.new{@winning_combos = winning_combos})
+		@winning_combos ||= winning_combos
 		[PLAYER_X, PLAYER_O].each do |mark|
 			player_positions = spaces.each_index.select{|index| spaces[index] == mark}
 			@winning_combos.each do |combo|
@@ -35,32 +35,32 @@ class TTTBoard < Board
 	end
 
 	private
-	def check_for_nil(obj, proc)
-		proc.call if obj.nil?
-	end
-
 	def winning_combos
 		winning_rows.concat(winning_cols).concat(winning_diags)
 	end
 
-	def winning_rows(winning_rows=[])
+	def winning_rows
+		@winning_rows=[]
 		(0..last_space).each_slice(width) do |row|
-			winning_rows.push(row)
+			@winning_rows.push(row)
 		end
-		winning_rows
+		@winning_rows
 	end
 
 	def winning_cols(winning_cols=[])
 		(0..last_space_in_row).each do |index|
-			winning_cols.push(winning_rows.transpose[index])
+			winning_cols.push(@winning_rows.transpose[index])
 		end
 		winning_cols
 	end
 
 	def winning_diags
-		left_diag = (0..last_space_in_row).collect{|i| winning_rows[i][i]}
-		reversed_rows = winning_rows.each{|x| x.reverse!}
-		right_diag = (0..last_space_in_row).collect{|i| reversed_rows[i][i]}
+		left_diag = get_diags(@winning_rows)
+		right_diag = get_diags(@winning_rows.reverse_each.to_a)
 		return [left_diag,right_diag]
+	end
+
+	def get_diags(array)
+		(0..last_space_in_row).collect{|i| array[i][i]}
 	end
 end
