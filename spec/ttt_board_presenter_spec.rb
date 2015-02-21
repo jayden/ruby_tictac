@@ -7,7 +7,7 @@ describe TTTBoardPresenter do
 
 	it "prints the board" do
 		board = TTTBoard.new
-		expect(TTTBoardPresenter.display(board)).to eql "   |   |   #{col_separator}   |   |   #{col_separator}   |   |   \n\n"
+		expect(TTTBoardPresenter.display(board)).to eql " 0 | 1 | 2 #{col_separator} 3 | 4 | 5 #{col_separator} 6 | 7 | 8 \n\n"
 	end
 
 	it "prints a vertical separator at index 0" do

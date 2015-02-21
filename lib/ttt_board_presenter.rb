@@ -3,6 +3,7 @@ module TTTBoardPresenter
 		board_layout = ""
 
 		board.spaces.each_with_index do |space, index|
+      space = index if space.strip.empty?
 			board_layout << " #{space} "
 			board_layout << write_separators(index, board.size)
 		end

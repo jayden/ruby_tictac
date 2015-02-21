@@ -13,9 +13,9 @@ How to Play
 
 The board is set up as depicted below.
 
-	    	   	  	 
+
                     |         |
-               0    |    1    |   2	
+               0    |    1    |   2
                     |         |
             ________|_________|________
                     |         |
@@ -26,5 +26,5 @@ The board is set up as depicted below.
                6    |    7    |   8
                     |         |
                     |         |
-            
+
 You will be Player 'X' and will always have the first move. To select a move, type in the desired numbered space. For example, if you wanted to move to the center of the board, type in "4" without the quotes.
