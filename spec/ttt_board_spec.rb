@@ -53,7 +53,7 @@ describe TTTBoard do
 			board.fill(7,player_o)
 
 			expect(board.winner?).to eql true
-		end	
+		end
 
 		it "finds winner in right column" do
 			board.fill(2,player_o)
@@ -61,7 +61,7 @@ describe TTTBoard do
 			board.fill(8,player_o)
 
 			expect(board.winner?).to eql true
-		end	
+		end
 
 		it "finds winner in left diagonal" do
 			board.fill(0,player_x)
@@ -69,7 +69,7 @@ describe TTTBoard do
 			board.fill(8,player_x)
 
 			expect(board.winner?).to eql true
-		end	
+		end
 
 		it "finds winner in right diagonal" do
 			board.fill(2,player_o)
@@ -77,7 +77,7 @@ describe TTTBoard do
 			board.fill(6,player_o)
 
 			expect(board.winner?).to eql true
-		end	
+		end
 
 		it "can identify the winner" do
 			board.fill(0,player_x)
@@ -94,7 +94,7 @@ describe TTTBoard do
 			board.fill(3,player_x)
 
 			expect(board.winner?).to eql false
-		end	
+		end
 	end
 
 	context "when there may be draw" do

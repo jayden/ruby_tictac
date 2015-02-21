@@ -5,7 +5,7 @@ describe Player do
 	let(:player_o) {TTTBoard::PLAYER_O}
 	let(:player_x) {TTTBoard::PLAYER_X}
 	let(:blank) {TTTBoard::EMPTY}
-	
+
 	before(:each) do
 		@board = TTTBoard.new
 		@player = Player.new @board, player_x

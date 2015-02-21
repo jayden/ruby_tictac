@@ -3,7 +3,7 @@ require 'board'
 class TTTBoard < Board
 	class InvalidMove < StandardError
 	end
-	
+
 	PLAYER_X = 'x'
 	PLAYER_O = 'o'
 	attr_reader :winner
@@ -14,7 +14,7 @@ class TTTBoard < Board
 	end
 
 	def draw?
-		return true unless spaces.include? EMPTY or winner? 
+		return true unless spaces.include? EMPTY or winner?
 			false
 	end
 

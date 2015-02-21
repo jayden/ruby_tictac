@@ -37,7 +37,7 @@ describe ConsoleUI do
 	end
 
 	it "shows the board" do
-		expect(@console_ui).to receive(:show_message).with(TTTBoardPresenter.display(@board))	
+		expect(@console_ui).to receive(:show_message).with(TTTBoardPresenter.display(@board))
 		@console_ui.show_board
 	end
 

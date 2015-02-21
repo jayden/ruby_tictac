@@ -42,7 +42,7 @@ describe 'Game' do
 		@ttt_board.fill(0, player_x)
 		computer = double
 		expect(computer).to receive(:move)
-	
+
 		test_game = Game.new(@ttt_board, @human_player, computer, @user_interface)
 		test_game.player_turn
 	end

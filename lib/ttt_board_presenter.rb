@@ -8,7 +8,7 @@ module TTTBoardPresenter
 		end
 
 		board_layout << "\n\n"
-	end 
+	end
 
 	def self.write_separators(index, size)
 		return last_col?(index, size) ? print_line(index,size) : "|"
